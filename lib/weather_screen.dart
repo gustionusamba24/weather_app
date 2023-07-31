@@ -22,7 +22,24 @@ class WeatherScreen extends StatelessWidget {
         ],
       ),
       body: const Column(
-        children: [],
+        children: [
+          // main card
+          Placeholder(
+            fallbackHeight: 250,
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Placeholder(
+            fallbackHeight: 150,
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Placeholder(
+            fallbackHeight: 150,
+          ),
+        ],
       ),
     );
   }
