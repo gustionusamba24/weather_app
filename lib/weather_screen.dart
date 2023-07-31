@@ -21,6 +21,9 @@ class WeatherScreen extends StatelessWidget {
           ),
         ],
       ),
+      body: const Column(
+        children: [],
+      ),
     );
   }
 }
