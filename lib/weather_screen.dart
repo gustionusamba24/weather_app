@@ -82,7 +82,7 @@ class WeatherScreen extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 8),
             const SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
@@ -103,12 +103,25 @@ class WeatherScreen extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 16),
-            Row(
+            const SizedBox(height: 8),
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                AdditionalInformationItem(),
-                AdditionalInformationItem(),
-                AdditionalInformationItem(),
+                AdditionalInformationItem(
+                  icon: Icons.water_drop,
+                  label: "Humidity",
+                  value: "91",
+                ),
+                AdditionalInformationItem(
+                  icon: Icons.air,
+                  label: "Wind Speed",
+                  value: "7.5",
+                ),
+                AdditionalInformationItem(
+                  icon: Icons.beach_access,
+                  label: "Pressure",
+                  value: "1000",
+                ),
               ],
             ),
           ],
