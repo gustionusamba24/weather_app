@@ -6,9 +6,14 @@ import 'package:weather_app/additional_information_item.dart';
 import 'package:weather_app/hourly_forecast_item.dart';
 import 'package:weather_app/secrets.dart';
 
-class WeatherScreen extends StatelessWidget {
+class WeatherScreen extends StatefulWidget {
   const WeatherScreen({super.key});
 
+  @override
+  State<WeatherScreen> createState() => _WeatherScreenState();
+}
+
+class _WeatherScreenState extends State<WeatherScreen> {
   Future getCurrentWeather() async {
     String cityName = "London";
     final res = await http.get(
