@@ -15,7 +15,7 @@ class WeatherScreen extends StatefulWidget {
 }
 
 class _WeatherScreenState extends State<WeatherScreen> {
-  Future getCurrentWeather() async {
+  Future<Map<String, dynamic>> getCurrentWeather() async {
     try {
       String cityName = "London";
       final res = await http.get(
@@ -70,6 +70,10 @@ class _WeatherScreenState extends State<WeatherScreen> {
               ),
             );
           }
+
+          final data = snapshot.data!;
+
+          final currentTemp = data["list"][0]["main"]["temp"];
 
           return Padding(
             padding: const EdgeInsets.all(16.0),
