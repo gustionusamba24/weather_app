@@ -29,6 +29,8 @@ class _WeatherScreenState extends State<WeatherScreen> {
       if (data["cod"] != "200") {
         throw "An unexpected error occurred";
       }
+
+      return data;
     } catch (e) {
       throw e.toString();
     }
@@ -56,11 +58,17 @@ class _WeatherScreenState extends State<WeatherScreen> {
         future: getCurrentWeather(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const CircularProgressIndicator();
+            return const Center(
+              child: CircularProgressIndicator.adaptive(),
+            );
           }
 
           if (snapshot.hasError) {
-            return Text(snapshot.error.toString());
+            return Center(
+              child: Text(
+                snapshot.error.toString(),
+              ),
+            );
           }
 
           return Padding(
