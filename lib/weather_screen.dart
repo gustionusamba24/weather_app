@@ -3,6 +3,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 import 'package:weather_app/additional_information_item.dart';
 import 'package:weather_app/hourly_forecast_item.dart';
 import 'package:weather_app/secrets.dart';
@@ -144,36 +145,26 @@ class _WeatherScreenState extends State<WeatherScreen> {
                   ),
                 ),
                 const SizedBox(height: 8),
-                const SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      HourlyForecastItem(
-                        time: "00:00",
-                        icon: Icons.cloud,
-                        temperature: "301.22",
-                      ),
-                      HourlyForecastItem(
-                        time: "03:00",
-                        icon: Icons.sunny,
-                        temperature: "300.52",
-                      ),
-                      HourlyForecastItem(
-                        time: "06:00",
-                        icon: Icons.cloud,
-                        temperature: "302.22",
-                      ),
-                      HourlyForecastItem(
-                        time: "09:00",
-                        icon: Icons.sunny,
-                        temperature: "300.12",
-                      ),
-                      HourlyForecastItem(
-                        time: "12:00",
-                        icon: Icons.cloud,
-                        temperature: "304.12",
-                      ),
-                    ],
+                SizedBox(
+                  height: 120,
+                  child: ListView.builder(
+                    itemCount: 5,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) {
+                      final hourlyForecast = data["list"][index + 1];
+                      final hourlySky =
+                          data["list"][index + 1]["weather"][0]["main"];
+                      final hourlyTemp =
+                          hourlyForecast["main"]["temp"].toString();
+                      final time = DateTime.parse(hourlyForecast["dt_txt"]);
+                      return HourlyForecastItem(
+                        time: DateFormat.j().format(time),
+                        icon: hourlySky == "Clouds" || hourlySky == "Rain"
+                            ? Icons.cloud
+                            : Icons.sunny,
+                        temperature: hourlyTemp,
+                      );
+                    },
                   ),
                 ),
                 const SizedBox(height: 20),
